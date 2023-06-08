@@ -12,7 +12,7 @@ import { newComment } from "../../modules/types";
 // use environment variables stored in .env, needs to be prefixed with REACT_APP_ in React apps
 // const API_URL = process.env.VITE_REACT_APP_API_URL || "http://localhost:9000";
 const API_URL = "http://localhost:9000";
-
+const apiKey = "0040d29c-3835-4c59-81b7-7ce4e654ded5";
 interface VideosDataType {
 
     id: string
@@ -175,7 +175,7 @@ const Home = () => {
     return ( 
         currentVideo && videosList ? 
         <>
-          <CurrentVideo  currentVideo={currentVideo}/>
+          <CurrentVideo apiKey={apiKey}  currentVideo={currentVideo}/>
           <div className="app__contant">
             <div className="main__content">
               <div className="main__content-left">
