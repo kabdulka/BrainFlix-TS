@@ -1,0 +1,65 @@
+@use './styles/partials/variables' as *;
+@use './styles/partials/mixins' as *;
+
+
+
+* {
+    font-family: "avenir";
+  }
+
+
+.app__contant {
+
+    padding: 0rem 1rem;
+    @include tablet {
+        padding: 0rem 2rem
+    }
+
+    @include desktop {
+        padding: 0rem 8rem;
+    }
+}
+
+
+.main__content {
+
+    width: 100%;
+
+    @include tablet {
+       
+    }
+
+    @include desktop {
+        display: flex;
+    }
+
+    &-right {
+
+        @include tablet {
+            padding-bottom: 2rem;
+        }
+
+        @include desktop {
+            padding-bottom: 4rem;
+        }
+    }
+
+    &-left {
+
+        @include tablet {
+        }
+
+        @include desktop {
+            width: 90%;
+
+            border-right: $mercury solid;
+            padding-bottom: 4rem;
+        }
+
+ 
+    }
+
+}
+
+
+

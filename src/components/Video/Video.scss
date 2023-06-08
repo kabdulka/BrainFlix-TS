@@ -1,0 +1,71 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
+
+
+.videos__link {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(157, 157, 177);
+    }
+}
+
+
+.videos__content-title {
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.videos__content-channel {
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+
+.videos__content {
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    justify-content: space-around;
+    width: 11rem;
+
+}
+
+.videos__image-container {
+    height: 100%;
+
+    width: 6rem;
+
+    @include tablet {
+        width: 7rem;
+    }
+
+    @include desktop {
+        width: 6.75rem;
+    }
+
+
+}
+
+.videos__image {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+    background-color: $mercury;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.15);
+    }
+}
+

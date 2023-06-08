@@ -1,0 +1,14 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
+.comments {
+
+    margin: 0;
+}
+
+.comments__list {
+    padding: 0;
+    margin: 0;
+}
+

@@ -1,0 +1,236 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
+.form {
+
+    @include tablet {
+        margin-top: 2rem;
+    }
+
+    @include desktop {
+
+    }
+
+    &__title {
+        font-size: 1.55rem;
+        font-weight: 600;
+        margin-top: 1rem;
+
+        @include tablet {
+     
+        }
+
+        @include desktop {
+
+        }
+    }
+
+    &__container {
+
+        @include tablet {
+
+        }
+
+        @include desktop {
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 0.75rem;
+        border-bottom: $mercury 1px solid;
+        padding-bottom: 1rem;
+        margin-top: 1.5rem;
+
+        @include tablet {
+            padding-bottom: 1.5rem;
+            
+        }
+
+        @include desktop {
+            align-items: center;
+            padding-right: 1.5rem;
+            padding-left: 1.25rem;
+            gap: 2rem;
+            border-bottom: none;
+
+        }
+
+    }
+
+    &__comment {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 1.25rem;
+
+        @include tablet {
+
+            flex-direction: row;
+            align-items: flex-end;
+        }
+
+        @include desktop {
+            
+        }
+
+
+        &__btn-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &-btn {
+            background-image: url('../../assets/Icons/add_comment.svg');
+            background-repeat: no-repeat;
+            background-position: 0.5rem;
+            background-size: 1.125rem;
+            background-color: $brainFlix-blue;
+            border: none;
+            color: $white;
+            padding: 0.25rem 2rem;
+            height: 2.5rem;
+            border-radius: 0.25rem;
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $brainFlix-DarkBlue;
+            }
+    
+            @include tablet {
+
+                width: 9.75rem;
+                font-size: 1rem;
+            }
+
+            @include desktop {
+                width: 9.4rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        
+        &-name {
+
+            height: 2.25rem;
+            border-radius: 0.25rem;
+            padding: 0.75rem;
+            background-color: $albaster;
+            border: 0.0625rem solid $mercury;
+    
+            &::placeholder {
+                color: black;
+                font-size: 0.85rem;
+                font-family: 'AvenirNext LT Pro';
+            }
+
+            &:focus {
+    
+                outline: 2px solid black;
+            }
+
+    
+            @include tablet {
+                padding: 1.5rem 1rem;
+                
+            }
+
+            &--error {
+                outline: 2px solid red;
+
+                &:focus {
+                    outline: 2px solid red;
+                }
+                &::placeholder {
+                    color: red;
+                }   
+            }
+        }
+
+        &-label {
+            color: $silver;
+            font-weight: 600;
+            font-size: 0.6rem;
+
+            @include tablet {
+                font-size: 0.75rem;
+            }
+        }
+
+        &-text {
+            border-radius: 0.25rem;
+            border: 0.0625rem solid $mercury;
+            background-color: $albaster;
+            resize: none;
+            font-family: 'avenir';
+            box-sizing: border-box;
+            height: 10rem;
+            padding: 0.62rem;
+           
+           @include tablet {
+            height: 2.5rem;
+           }
+    
+            &::placeholder {
+                color: black;
+                font-size: 0.85rem;
+                font-family: 'avenir';
+            }
+    
+            &:focus {
+
+                outline: 2px solid black;
+            }
+
+            &--error {
+                outline: 2px solid red;
+
+                &:focus {
+                    outline: 2px solid red;
+                }
+                &::placeholder {
+                    color: red;
+                }   
+            }
+
+        }
+
+
+
+    }
+
+
+    &__info-container {
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        flex: 1;
+    }
+
+
+} // end 
+
+
+.comment__image {
+    background-color: $mercury;
+    height: 2.25rem;
+    width: 2.25rem;
+    object-fit: cover;
+    object-position: 30% 60%;
+    border-radius: 50%;
+
+    &--form {
+    }
+
+    @include tablet {
+        height: 2.5rem;
+        width: 2.5rem;
+        max-height: 2.5rem;
+        max-width: 2.5rem;
+    }
+}
