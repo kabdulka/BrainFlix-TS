@@ -10,8 +10,7 @@ interface CommentProps {
 const Comment = ({currentComment, deleteComment}: CommentProps) => {
 
     const handleClick = (): void => {
-        // console.log(  currentComment.id)
-        // console.log("click delete");
+
         deleteComment(currentComment.id)
     }
 

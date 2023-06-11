@@ -1,4 +1,3 @@
-// import Video from '../Video/Video';
 import Video from "../Video/Video"
 import { VideosDataType } from '../../modules/types';
 import '../VideoList/VideoList.scss';

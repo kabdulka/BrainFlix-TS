@@ -140,10 +140,11 @@
             }
 
             &--error {
-                outline: 2px solid red;
+                border: none;
+                outline: 1px solid red;
 
                 &:focus {
-                    outline: 2px solid red;
+                    outline: 1px solid red;
                 }
                 &::placeholder {
                     color: red;
@@ -187,10 +188,10 @@
             }
 
             &--error {
-                outline: 2px solid red;
+                outline: 1px solid red;
 
                 &:focus {
-                    outline: 2px solid red;
+                    outline: 1px solid red;
                 }
                 &::placeholder {
                     color: red;

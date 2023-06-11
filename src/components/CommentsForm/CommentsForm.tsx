@@ -1,7 +1,7 @@
 import './CommentsForm.scss';
 import avatar from '../../assets/Images/Mohan-muruge.jpg';
 import { useState, useEffect, FormEvent, ChangeEvent} from 'react';
-import { VideoType, CommentType } from '../../modules/types';
+import { VideoType } from '../../modules/types';
 
 interface newComment {
     comment: string

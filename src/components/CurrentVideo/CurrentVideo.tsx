@@ -9,8 +9,7 @@ interface CurrentVideoProp {
     currentVideo: VideoType
 }
 
-const CurrentVideo = ({currentVideo, apiKey} : CurrentVideoProp) => {
-    console.log("current video ", currentVideo.video);
+const CurrentVideo = ({currentVideo} : CurrentVideoProp) => {
     return ( 
         <>
             <section className="selected-Video"> 

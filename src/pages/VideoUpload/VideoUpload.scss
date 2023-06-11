@@ -112,6 +112,17 @@
             width: 100%;
         }
     }
+
+    &-title--error {
+        border: 1px solid red;
+        &:focus {
+            border: none;
+            outline: 1px solid red;
+        }
+        &::placeholder {
+            color: red;
+        }
+    }
     
     &-description-label {
         color: $silver;
@@ -133,6 +144,17 @@
             color: $brainFlix-Black;
         }
 
+    }
+
+    &-description--error {
+        border: 1px solid red;
+        &:focus {
+            border: none;
+            outline: 1px solid red;
+        }
+        &::placeholder {
+            color: red;
+        }
     }
 
     &-update {

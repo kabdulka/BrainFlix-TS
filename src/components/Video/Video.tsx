@@ -9,7 +9,6 @@ interface VideoProp {
 }
 
 function Video( {video} : VideoProp) {
-// function Video( {videoObj }: {videoObj: VideoProp}) {
   return (
     <>
       <li className="videos__item">

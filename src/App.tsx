@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from './pages/Home/Home';
@@ -16,7 +15,6 @@ export function getFormattedDate (timeStamp: number): string {
   let hoursInSeconds = postedDate.getHours()*3600;
   let minutesInSeconds = postedDate.getMinutes()*60;
   let seconds = postedDate.getSeconds();
-  let totalTimeInSec = hoursInSeconds + minutesInSeconds + seconds;
 
   if (postedDate.getMonth()/10 < 1 ) {
       month++;

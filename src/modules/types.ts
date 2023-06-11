@@ -25,13 +25,6 @@ export interface CommentType {
   timestamp: number
 }
 
-// export interface CondensedVideoType {
-//   id: string
-//   title: string
-//   channel: string
-//   image: string
-// }
-
 export interface VideoType {
   id: string
   title: string

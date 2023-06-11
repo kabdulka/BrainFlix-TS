@@ -10,7 +10,6 @@ interface CommentListProps {
 const CommentList = ({currentVideo, deleteComment}: CommentListProps) => {
 
     const comments = currentVideo.comments;
-    // const videoId = currentVideo.id;
 
     return ( 
         <>
@@ -23,9 +22,11 @@ const CommentList = ({currentVideo, deleteComment}: CommentListProps) => {
  
                     // Map returns new data use it instead of a for each loop
                     <Comment  
-                           key={comment.id} currentComment={comment} deleteComment={deleteComment}/>
+                           key={comment.id} 
+                           currentComment={comment} 
+                           deleteComment={deleteComment}/>
                 
-                           )}
+                )}
             </ul>
 
         </section>

@@ -45,7 +45,6 @@ interface VideoType {
 
 const Home = () => {
 
-    // const apiKey: string = `789bb1ed-ef63-4f3c-a3fc-e83987bf2396`;
     let request: string = `videos`
     const videosUrl: string = `${API_URL}/${request}`
 
@@ -78,7 +77,6 @@ const Home = () => {
         axios
             .get(videosUrl)
             .then((response) => {
-              // check if it exists
                 setVideosList(response.data);
 
             }).then(response => {
@@ -116,9 +114,8 @@ const Home = () => {
     if (videoId) {
         getCurrentVideo(videoId);
     } else if(videosList.length){
-        let ranNum = getRandomVid(videosList.length)
+        let ranNum: number = getRandomVid(videosList.length)
 
-        // let testLen = videosList.length-1 // temp var
         let curVid: string = videosList[ranNum].id;
         getCurrentVideo(curVid)
 
@@ -146,7 +143,7 @@ const Home = () => {
     const deleteCommentUrl = `${API_URL}/${request}/${currentVideo?.id}/comments/${commentId}`;
     axios
         .delete(deleteCommentUrl)
-        .then((response ) => {
+        .then(( ) => {
             getCurrentVideo(currentVideo?.id)
         })
         .catch( (err) => {
@@ -161,7 +158,7 @@ const Home = () => {
     alert("Video Liked")
     axios
     .put(url)
-    .then((response) => {
+    .then(() => {
         getCurrentVideo(currentVideo?.id)
     })
     .catch( (err) => {

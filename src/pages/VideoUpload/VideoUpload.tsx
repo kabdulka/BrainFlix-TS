@@ -7,7 +7,20 @@ import axios from 'axios';
 import { NewVideo } from '../../modules/types';
 
 
+interface CommentErrorState {
+    [key: string]: boolean
+    titleError: boolean
+    descriptionError: boolean
+}
+
 const VideoUpload = () => {
+    
+    const [newTitle, setTitle] = useState("")
+    const [newDescription, setDescription] = useState("")
+    const [uploadErrorState, setUploadErrorState] = useState<CommentErrorState>({
+        titleError: false,
+        descriptionError: false
+    })
 
     // const API_URL = process.env.REACT_APP_API_URL;
     const API_URL = "http://localhost:9000";
@@ -24,29 +37,45 @@ const VideoUpload = () => {
         })
       }
 
-    const [newTitle, setTitle] = useState("")
-    const [newDescription, setDescription] = useState("")
-
     document.title = 'Upload';
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (newTitle.length < 2 || newDescription.length < 2) {
-            alert("enter more than 2 letters")
-        } else {
+
+        let formComplete: boolean = true;
+
+        const localUploadStateErr = {
+            titleError: false,
+            descriptionError: false
+        }
+
+        if (newTitle.length <= 0) {
+            localUploadStateErr.titleError = true;
+            formComplete = false;
+        } 
+        if ( newDescription.length <= 0) {
+            localUploadStateErr.descriptionError = true;
+            formComplete = false;
+        } 
+
+        setUploadErrorState(localUploadStateErr);
+
+        if (formComplete) {
+
             const newVideoObj = {
                 title: newTitle,
                 description: newDescription
             };
-
+    
             postVideo(newVideoObj)
            
             setTitle("");
             setDescription("");
-            // navigate will route to home
+            // navigate/route home
             navigate("/")
+        } else {
+            return;
         }
-
 
     }
 
@@ -72,12 +101,23 @@ const VideoUpload = () => {
                     <div className="form__section-input">
                         <div className="form__section-title-text">
                             <label  className="form__section-title-label" htmlFor="formTitle"> TITLE YOUR VIDEO </label>
-                            <input value={newTitle} onChange={handleTitleUpload} className="form__section-title-input" name="formTitle" placeholder="Add a title to your video"/>
+                            <input 
+                                value={newTitle} 
+                                onChange={handleTitleUpload} 
+                                className={`form__section-title-input ${uploadErrorState.titleError ? "form__section-title--error": ""}`}
+                                name="formTitle" 
+                                placeholder="Add a title to your video"/>
                         </div>
 
                         <div className="form__section-description">
                             <label className="form__section-description-label" htmlFor="formDescription"> ADD A VIDEO DESCRIPTION </label>
-                            <textarea value={newDescription} onChange={handleDescriptionUpload} className="form__section-description-input" name="formDescription" placeholder="Add a description of your video"/>
+                            <textarea 
+                                value={newDescription} 
+                                onChange={handleDescriptionUpload} 
+                                className={`form__section-description-input ${uploadErrorState.descriptionError ? "form__section-description--error": ""}`}
+
+                                name="formDescription" 
+                                placeholder="Add a description of your video"/>
                         </div>
                     </div>
 
