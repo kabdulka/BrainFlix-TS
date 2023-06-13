@@ -20,11 +20,12 @@ const CommentsForm = ({postComment, currentVideo}: CommentFormProps) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
-        if (newComment.length < 2) {
+        if (newComment.length === 0) {
             setTextFieldError("--error");
+            return;
         } else {
             setTextFieldError("");
-            const newCommentObj = {
+            const newCommentObj: newComment = {
                 comment: newComment
             };
 

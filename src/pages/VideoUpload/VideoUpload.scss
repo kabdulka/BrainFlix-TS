@@ -206,7 +206,8 @@
     }
 
     &-cancel {
-
+        display: flex;
+        justify-content: center;
         border: none;
         text-decoration: none;
         background-color: $white;

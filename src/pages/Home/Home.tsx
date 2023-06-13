@@ -9,9 +9,9 @@ import CommentList from "../../components/CommentList/CommentList";
 import CommentsForm from "../../components/CommentsForm/CommentsForm"
 import { newComment } from "../../modules/types";
 
-// use environment variables stored in .env, needs to be prefixed with REACT_APP_ in React apps
+// environment variables stored in .env, needs to be prefixed with REACT_APP_ in React apps
 // const API_URL = process.env.VITE_REACT_APP_API_URL || "http://localhost:9000";
-const API_URL = "http://localhost:9000";
+const API_URL = "http://localhost:5500";
 const apiKey = "0040d29c-3835-4c59-81b7-7ce4e654ded5";
 interface VideosDataType {
 
@@ -45,67 +45,71 @@ interface VideoType {
 
 const Home = () => {
 
-    let request: string = `videos`
-    const videosUrl: string = `${API_URL}/${request}`
+  let request: string = `videos`
+  const videosUrl: string = `${API_URL}/${request}`
 
-    const [videosList, setVideosList] = useState<VideosDataType[]>([]);
+  const [videosList, setVideosList] = useState<VideosDataType[]>([]);
 
-    const [currentVideo, setCurrentVideo] = useState<VideoType>({
-      id: "",
-      title: "",
-      channel: "",
-      image: "",
-      description: "",
-      views: "",
-      likes: "",
-      duration: "",
-      video: "",
-      timestamp: 0,
-      comments: [
+  const [currentVideo, setCurrentVideo] = useState<VideoType>({
+    id: "",
+    title: "",
+    channel: "",
+    image: "",
+    description: "",
+    views: "",
+    likes: "",
+    duration: "",
+    video: "",
+    timestamp: 0,
+    comments: [
 
-      ]
-    });
+    ]
+  });
    
-    const {videoId} = useParams()
+  const {videoId} = useParams()
 
-    function getRandomVid (vidListLen: number) {
-        return Math.floor((Math.random() * vidListLen));
-    }
+  function getRandomVid (vidListLen: number) {
+    return Math.floor((Math.random() * vidListLen));
+  }
 
-    function getVideos () {
+  function getVideos () {
 
-        axios
-            .get(videosUrl)
-            .then((response) => {
-                setVideosList(response.data);
+    axios
+    .get(videosUrl)
+    .then((response) => {
+      setVideosList(response.data);
 
-            }).then(response => {
+      })
+    .then(() => {
 
-        })
-        .catch ((err) => {
-            console.log(`Videos API error :`, err)
-        })
+      })
+    .catch ((err) => {
+      console.log(`Videos API error :`, err)
+    })
 
 
 	}// end getVideos function
 
-    // on page mount [] empty dependency runs once. good for API calls
-    // fires the side effect of useEffect after every render when there is no second argument
-    useEffect(() => {
-        getVideos();
-        document.title = 'Home';
-    }, [])
+  // on page mount [] empty dependency runs once. good for API calls
+  // fires the side effect of useEffect after every render when there is no second argument
+  useEffect(() => {
+    getVideos();
+    document.title = 'Home';
+  }, [])
 
-    function getCurrentVideo(id: string) {
-        axios
-        .get(`${API_URL}/${request}/${id}`)
-        .then( (response) => {
-        setCurrentVideo(response.data)
-        document.title = `${response.data.title}}`;
-        }).catch ( (err: Error) => {
-        console.log(`Videos API error :` , err);
+  function getCurrentVideo(id: string) {
+    console.log("id," + id)
+      axios
+      .get(`${API_URL}/${request}/${id}`)
+      .then( (response) => {
+          setCurrentVideo(response.data)
+          console.log(response.data)
+          document.title = `${response.data.title}}`;
         })
-    }
+      .catch ( (err: Error) => {
+        console.log(`Videos API error :` , err);
+      })
+  }
  
 
   // empy square brackets [] means on page mount (page renders)
@@ -121,7 +125,7 @@ const Home = () => {
 
     }
     // videoId is a dependency which means that the use effect will run the code when the videoId variable has changed
-    window.scrollTo(0, 0)
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }, [videoId, videosList])
 
 
@@ -140,10 +144,12 @@ const Home = () => {
 
   const deleteComment = (commentId: string) => {
     
-    const deleteCommentUrl = `${API_URL}/${request}/${currentVideo?.id}/comments/${commentId}`;
+    const deleteCommentUrl = `${API_URL}/${request}/${currentVideo.id}/comments/${commentId}`;
+    console.log("inside")
     axios
         .delete(deleteCommentUrl)
         .then(( ) => {
+          console.log("here")
             getCurrentVideo(currentVideo?.id)
         })
         .catch( (err) => {
@@ -154,12 +160,12 @@ const Home = () => {
 
   const likeVideo = (videoId: string): void => {
    
-    const url = `http://localhost:9000/videos/${currentVideo.id}/likes`;
-    alert("Video Liked")
+    const url = `${API_URL}/${request}/${currentVideo?.id}/likes`;
     axios
     .put(url)
     .then(() => {
-        getCurrentVideo(currentVideo?.id)
+      // alert("Video Liked")
+      // getCurrentVideo(videoId)
     })
     .catch( (err) => {
         console.log("Could not like video", err);
@@ -177,7 +183,7 @@ const Home = () => {
             <div className="main__content">
               <div className="main__content-left">
                 
-                <MainContent currentVideo={currentVideo} likeVideo={likeVideo}/>
+                <MainContent getCurrentVideo={getCurrentVideo} currentVideo={currentVideo} likeVideo={likeVideo}/>
                 <CommentsForm currentVideo={currentVideo} postComment={postComment} />
                 <CommentList deleteComment={deleteComment} currentVideo={currentVideo}/>
               </div>

@@ -7,12 +7,18 @@ import { VideoType } from '../../modules/types';
 interface MainContentProps {
     currentVideo: VideoType
     likeVideo: (videoId: string) => void
+    getCurrentVideo: (id: string) => void
 }
 
-const MainContent = ({currentVideo, likeVideo}: MainContentProps) => {
+const MainContent = ({currentVideo, likeVideo, getCurrentVideo}: MainContentProps) => {
+ 
 
     const handleVideoLike = () => {
         likeVideo(currentVideo.id)
+        setTimeout(() => {
+            
+            getCurrentVideo(currentVideo.id)
+        }, 5);
     }
 
     return (
