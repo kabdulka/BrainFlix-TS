@@ -13,13 +13,13 @@ interface MainContentProps {
 const MainContent = ({currentVideo, likeVideo, getCurrentVideo}: MainContentProps) => {
  
 
-    const handleVideoLike = () => {
-        likeVideo(currentVideo.id)
-        setTimeout(() => {
+    // const handleVideoLike = () => {
+    //     likeVideo(currentVideo.id)
+    //     // setTimeout(() => {
             
-            getCurrentVideo(currentVideo.id)
-        }, 5);
-    }
+    //         getCurrentVideo(currentVideo.id)
+    //     // }, 5);
+    // }
 
     return (
         <>
@@ -42,7 +42,7 @@ const MainContent = ({currentVideo, likeVideo, getCurrentVideo}: MainContentProp
                             <p className="current-video__views"> {currentVideo.views} </p>
                         </div>
                         <div className="current-video__likes-container">
-                            <img onClick={handleVideoLike} className="current-video__likes-icon" src={likesIcon}/>
+                            <img onClick={() => {likeVideo(currentVideo?.id)}} className="current-video__likes-icon" src={likesIcon}/>
                             <p className="current-video__likes"> {currentVideo.likes} </p>
                             
                         </div>

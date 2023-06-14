@@ -11,10 +11,7 @@ body {
     
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    // position: fixed;
-
-    padding-bottom: 1rem;
+    padding-top: 1rem;
 
     @include tablet {
         flex-direction: row;

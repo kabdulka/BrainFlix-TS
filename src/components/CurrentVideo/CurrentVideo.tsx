@@ -5,7 +5,7 @@ import {VideoType} from "../../modules/types"
 
 
 interface CurrentVideoProp {
-    apiKey: string
+    
     currentVideo: VideoType
 }
 

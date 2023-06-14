@@ -102,9 +102,12 @@ const Home = () => {
       axios
       .get(`${API_URL}/${request}/${id}`)
       .then( (response) => {
+        setTimeout(() => {
+          
           setCurrentVideo(response.data)
           console.log(response.data)
           document.title = `${response.data.title}}`;
+        }, 500);
         })
       .catch ( (err: Error) => {
         console.log(`Videos API error :` , err);
@@ -160,17 +163,17 @@ const Home = () => {
 
   const likeVideo = (videoId: string): void => {
    
-    const url = `${API_URL}/${request}/${currentVideo?.id}/likes`;
+    const url = `${API_URL}/${request}/${videoId}/likes`;
     axios
     .put(url)
     .then(() => {
       // alert("Video Liked")
-      // getCurrentVideo(videoId)
+      getCurrentVideo(videoId)
     })
     .catch( (err) => {
         console.log("Could not like video", err);
 
-    })
+    });
 }
 	
   
@@ -178,7 +181,7 @@ const Home = () => {
     return ( 
         currentVideo && videosList ? 
         <>
-          <CurrentVideo apiKey={apiKey}  currentVideo={currentVideo}/>
+          <CurrentVideo   currentVideo={currentVideo}/>
           <div className="app__contant">
             <div className="main__content">
               <div className="main__content-left">
