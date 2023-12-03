@@ -1,11 +1,8 @@
-
-
 export interface VideosDataType {
-
-    id: string
-    title: string
-    channel: string
-    image: string
+  id: string
+  title: string
+  channel: string
+  image: string
 }
 
 export interface NewVideo {

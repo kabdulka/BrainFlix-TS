@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <BrowserRouter>

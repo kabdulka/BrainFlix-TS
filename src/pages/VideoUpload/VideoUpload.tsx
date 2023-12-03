@@ -12,7 +12,7 @@ interface CommentErrorState {
   fileError: boolean;
 }
 
-const VideoUpload = () => {
+const VideoUpload: React.FC = () => {
   const apiService = new ApiService();
 
   const queryClient = useQueryClient();

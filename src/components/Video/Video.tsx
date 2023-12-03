@@ -7,7 +7,7 @@ interface VideoProp {
   video: VideosDataType;
 }
 
-function Video({ video }: VideoProp) {
+const Video: React.FC<VideoProp> = ({ video }) => {
   return (
     <>
       <li className="videos__item">

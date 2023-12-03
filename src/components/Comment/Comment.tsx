@@ -9,11 +9,11 @@ interface CommentProps {
   videoId: string;
 }
 
-const Comment = ({
+const Comment: React.FC<CommentProps> = ({
   currentComment,
   handleCommentUpdate,
   videoId,
-}: CommentProps) => {
+}) => {
   const apiService = new ApiService();
 
   const handleClick = async () => {

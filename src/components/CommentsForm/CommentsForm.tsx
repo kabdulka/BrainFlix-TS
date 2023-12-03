@@ -15,10 +15,10 @@ interface CommentFormProps {
 
 const apiService = new ApiService();
 
-const CommentsForm = ({
+const CommentsForm: React.FC<CommentFormProps> = ({
   currentVideo,
   handleCommentUpdate,
-}: CommentFormProps) => {
+}) => {
   const [newComment, setNewComment] = useState<string>("");
   const [textFieldError, setTextFieldError] = useState<string>("");
 

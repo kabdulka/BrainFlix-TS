@@ -31,11 +31,12 @@ interface VideoType {
   comments: Comment[];
 }
 
-export const request: string = `videos`;
-const Home: React.FC = () => {
 
-  const apiService = new ApiService();
+const Home: React.FC = () => {
   
+  const request: string = `videos`;
+  const apiService = new ApiService();
+
   const [currentVideo, setCurrentVideo] = useState<VideoType>({
     id: "",
     title: "",
@@ -60,13 +61,10 @@ const Home: React.FC = () => {
     data: videosData,
   } = useQuery(["videos", request], fetchVideos);
 
-  // on page mount [] empty dependency runs once. good for API calls
-  // fires the side effect of useEffect after every render when there is no second argument
   useEffect(() => {
     document.title = "Home";
   }, []);
 
-  // empy square brackets [] means on page mount (page renders)
   useEffect(() => {
     async function fetchVideo() {
       if (videoId) {

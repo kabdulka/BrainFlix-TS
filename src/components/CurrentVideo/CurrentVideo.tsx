@@ -1,11 +1,12 @@
 import "./CurrentVideo.scss";
 import { VideoType } from "../../modules/types";
+import React from "react";
 
 interface CurrentVideoProp {
   currentVideo: VideoType;
 }
 
-const CurrentVideo = ({ currentVideo }: CurrentVideoProp) => {
+const CurrentVideo: React.FC<CurrentVideoProp> = ({ currentVideo }) => {
   return (
     <>
       <section className="selected-Video">

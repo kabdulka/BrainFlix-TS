@@ -1,11 +1,9 @@
 import "./Header.scss";
-
-// import logo from '../../assets/Logo/BrainFlix-logo.svg';
 import logo from "../../assets/Logo/BrainFlix-logo.svg";
 import avatar from "../../assets/Images/Mohan-muruge.jpg";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <>
       <header className="header">

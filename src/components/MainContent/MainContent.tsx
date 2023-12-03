@@ -12,7 +12,7 @@ interface MainContentProps {
   handleVideoLike: (videoId: string) => void;
 }
 
-const MainContent = ({ currentVideo, handleVideoLike }: MainContentProps) => {
+const MainContent: React.FC<MainContentProps> = ({ currentVideo, handleVideoLike }) => {
   const handleLike = async () => {
     try {
       await apiService.likeVideo(currentVideo.id);
@@ -28,12 +28,8 @@ const MainContent = ({ currentVideo, handleVideoLike }: MainContentProps) => {
         <h2 className="current-video__title"> {currentVideo.title} </h2>
         <div className="current-video__info">
           <div className="current-video__flex1">
-            <p className="current-video__channel">
-
-              by {currentVideo.channel}
-            </p>
+            <p className="current-video__channel">by {currentVideo.channel}</p>
             <p className="current-video__date">
-
               {getFormattedDate(currentVideo.timestamp)}
             </p>
           </div>
@@ -54,9 +50,7 @@ const MainContent = ({ currentVideo, handleVideoLike }: MainContentProps) => {
           </div>
         </div>
 
-        <p className="current-video__description">
-          {currentVideo.description}
-        </p>
+        <p className="current-video__description">{currentVideo.description}</p>
         <p className="current-video__comment-number">
           {currentVideo.comments?.length} comments{" "}
         </p>

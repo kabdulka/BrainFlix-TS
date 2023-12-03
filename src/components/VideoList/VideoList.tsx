@@ -6,7 +6,7 @@ interface VideoListProp {
   videos: VideosDataType[];
 }
 
-const VideoList = ({ videos }: VideoListProp) => {
+const VideoList: React.FC<VideoListProp> = ({ videos }) => {
   return (
     <>
       <aside className="videos">
