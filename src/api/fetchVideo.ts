@@ -9,7 +9,7 @@ export const fetchVideo = async ({ queryKey }) => {
     if (!videoId) {
         const randNum = getRandomVid(videos?.length);
         const currentVidId = videos[randNum]?.id
-        const apiRes = await axios.get(`http://localhost:5500/${request}/${currentVidId}`);
+        const apiRes = await axios.get(`${API_URL}/${request}/${currentVidId}`);
 
         if (!apiRes) {
             throw new Error(`vvideoIdeo fetch not okay`);
@@ -17,11 +17,10 @@ export const fetchVideo = async ({ queryKey }) => {
         return apiRes.data;
 
     } else {
-        const apiRes = await axios.get(`http://localhost:5500/${request}/${videoId}`);
+        const apiRes = await axios.get(`${API_URL}/${request}/${videoId}`);
         if (!apiRes) {
             throw new Error(`vvideoIdeo fetch not okay`);
         }
-        console.log(apiRes.data);
         return apiRes.data;
     }
 }
