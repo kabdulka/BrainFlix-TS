@@ -36,7 +36,7 @@ export class ApiService {
   private request: string;
 
   constructor() {
-    this.API_URL = "http://localhost:5500";
+    this.API_URL = import.meta.env.VITE_API_URL;
     this.request = "videos";
     // headers
   }

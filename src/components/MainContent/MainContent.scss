@@ -7,23 +7,14 @@
 
     width: 100%;
 
-    @include tablet {
-        
-    }
-
-    @include desktop {
-    }
-
     &__title {
-        padding-bottom: 1rem;
+        margin-top: 1rem;
+        padding-bottom: 0.5rem;
         border-bottom: $mercury solid;
 
         @include tablet {
             border-bottom: none;
-            padding-bottom: 0rem;
-            font-size: 2.1rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.1rem;           
         }
 
         @include desktop {
@@ -35,11 +26,12 @@
 
     &__info {
         border-bottom: $mercury solid;
-
+        margin-top: 0.5rem;
+        padding-bottom: 0.5rem;
         display: flex;
         justify-content: space-between;
         gap: 5rem;
-        padding-bottom: 1rem;
+        // padding-bottom: 1rem;
 
         @include tablet {
          
@@ -51,11 +43,10 @@
         }
     }
 
-
-
     &__description {
 
         font-size: 0.85rem;
+        margin-top: 0.5rem;
 
         @include tablet {
           
@@ -65,24 +56,21 @@
         @include desktop {
             padding-right: 1.5rem;
         }
-      
     }
 
     &__comment-number {
         font-size: 0.85rem;
         font-weight: 700;
+        margin-top: 2rem;
 
         @include tablet {
             font-size: 0.9rem;
-            margin-top: 2rem;
         }
 
         @include desktop {
             margin-top: 3rem;
             margin-bottom: 0rem;
         }
-
-       
     }
 
     &__flex1 {
@@ -157,7 +145,6 @@
         display: flex;
         gap: 0.5rem;
     }
-
 }
 
 .current-video__image {

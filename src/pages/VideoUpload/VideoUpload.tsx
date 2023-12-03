@@ -21,7 +21,7 @@ const VideoUpload = () => {
   const [newImage, setNewImage] = useState(null);
   const [file, setFile] = useState(null);
   const [fileDataUrl, setFileDataUrl] = useState(null); //tracks data url for uploaded image file
-  const [filename, setFilename] = useState("Select an Image"); //tracks file name of uploaded file
+  const [filename, _] = useState("Select an Image"); //tracks file name of uploaded file
   const [uploadErrorState, setUploadErrorState] = useState<CommentErrorState>({
     titleError: false,
     descriptionError: false,

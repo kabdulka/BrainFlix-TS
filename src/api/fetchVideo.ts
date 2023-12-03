@@ -3,6 +3,7 @@ import { getRandomVid } from "../util/helpers";
 
 export const fetchVideo = async ({ queryKey }) => {
 
+    const API_URL = import.meta.env.VITE_API_URL;
     const [_, request, videoId, videos] = queryKey;
 
     if (!videoId) {

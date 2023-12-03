@@ -7,12 +7,7 @@ import CommentList from "../../components/CommentList/CommentList";
 import CommentsForm from "../../components/CommentsForm/CommentsForm";
 import { useQuery } from "@tanstack/react-query";
 import fetchVideos from "../../api/fetchVideos";
-
 import { ApiService } from "../../api/ApiService";
-
-const apiService = new ApiService();
-// environment variables stored in .env, needs to be prefixed with REACT_APP_ in React apps
-export const API_URL = "http://localhost:5500";
 
 interface Comment {
   id: string;
@@ -38,6 +33,9 @@ interface VideoType {
 
 export const request: string = `videos`;
 const Home: React.FC = () => {
+
+  const apiService = new ApiService();
+  
   const [currentVideo, setCurrentVideo] = useState<VideoType>({
     id: "",
     title: "",
@@ -60,8 +58,6 @@ const Home: React.FC = () => {
 
   const {
     data: videosData,
-    isLoading,
-    isError,
   } = useQuery(["videos", request], fetchVideos);
 
   // on page mount [] empty dependency runs once. good for API calls
