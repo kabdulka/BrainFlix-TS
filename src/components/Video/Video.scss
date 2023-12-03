@@ -1,9 +1,6 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-
-
-
 .videos__link {
     text-decoration: none;
     color: black;
@@ -18,7 +15,6 @@
     }
 }
 
-
 .videos__content-title {
     font-size: 0.75rem;
     margin: 0;
@@ -28,7 +24,6 @@
     font-size: 0.75rem;
     margin: 0;
 }
-
 
 .videos__content {
 
@@ -53,7 +48,6 @@
     @include desktop {
         width: 6.75rem;
     }
-
 
 }
 

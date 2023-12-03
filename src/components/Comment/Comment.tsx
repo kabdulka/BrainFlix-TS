@@ -1,17 +1,25 @@
 import '../Comment/Comment.scss';
-import { getFormattedDate } from '../../App';
+import { getFormattedDate } from '../../util/helpers';
 import { CommentType } from '../../modules/types';
+import { ApiService } from '../../api/ApiService';
 
 interface CommentProps {
     currentComment: CommentType
-    deleteComment: (commentId: string) => void
+    handleCommentUpdate: () => void
+    videoId: string
 }
 
-const Comment = ({currentComment, deleteComment}: CommentProps) => {
+const Comment = ({currentComment, handleCommentUpdate, videoId}: CommentProps) => {
+    
+    const apiService = new ApiService();
 
-    const handleClick = (): void => {
-
-        deleteComment(currentComment.id)
+    const handleClick = async () => {
+        try {
+            await apiService.deleteComment(videoId, currentComment.id);
+            handleCommentUpdate();
+        } catch (e) {
+            console.log("Comment video error")
+        }
     }
 
     return ( 
@@ -29,10 +37,7 @@ const Comment = ({currentComment, deleteComment}: CommentProps) => {
                             {currentComment.comment}
                         </p>
                         <a onClick={(handleClick)} className="comment__delete"> DELETE </a>
-
                     </div>
-
-     
                 </div>
             </li> 
         </>

@@ -4,16 +4,15 @@ import { VideoType } from '../../modules/types';
 
 interface CommentListProps {
     currentVideo: VideoType
-    deleteComment: (commentId: string) => void
+    handleCommentUpdate: () => void
 }
 
-const CommentList = ({currentVideo, deleteComment}: CommentListProps) => {
+const CommentList = ({currentVideo, handleCommentUpdate}: CommentListProps) => {
 
     const comments = currentVideo.comments;
 
     return ( 
         <>
-     
         <section className='comments'>
 
             <ul className='comments__list'>
@@ -24,13 +23,13 @@ const CommentList = ({currentVideo, deleteComment}: CommentListProps) => {
                     <Comment  
                            key={comment.id} 
                            currentComment={comment} 
-                           deleteComment={deleteComment}/>
+                           handleCommentUpdate={handleCommentUpdate}
+                           videoId={currentVideo.id}
+                    />
                 
                 )}
             </ul>
-
         </section>
-
         </>
     );
 }

@@ -9,6 +9,7 @@ export interface VideosDataType {
 }
 
 export interface NewVideo {
+  imageThumbnail?: File
   title: string
   description: string
 }

@@ -3,7 +3,6 @@ import "../VideoList/VideoList";
 import { Link} from "react-router-dom";
 import { VideosDataType } from "../../modules/types";
 
-
 interface VideoProp {
   video: VideosDataType
 }

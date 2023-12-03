@@ -5,8 +5,6 @@ import "./Header.scss";
 import logo from "../../assets/Logo/BrainFlix-logo.svg";
 import avatar from '../../assets/Images/Mohan-muruge.jpg';
 import { Link } from "react-router-dom";
-// import React from "react";
-
 
 
 const Header = () => {
@@ -15,9 +13,8 @@ const Header = () => {
         <>
             <header className="header">
                 <div className="header__logo-container">
-
                     
-                    <Link className='header__logo-link' to="/">
+                    <Link className='header__logo-link' to="/" >
                         <img className="header__logo-image" src={logo} alt="brainflix-logo"/> 
                     </Link>
 

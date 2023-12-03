@@ -1,25 +1,19 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import CurrentVideo from "../../components/CurrentVideo/CurrentVideo";
 import VideoList from '../../components/VideoList/VideoList'
 import MainContent from "../../components/MainContent/MainContent";
 import CommentList from "../../components/CommentList/CommentList";
 import CommentsForm from "../../components/CommentsForm/CommentsForm"
-import { newComment } from "../../modules/types";
+import { useQuery } from "@tanstack/react-query";
+import fetchVideos from '../../api/fetchVideos'
 
+import { ApiService } from "../../api/ApiService";
+
+const apiService = new ApiService()
 // environment variables stored in .env, needs to be prefixed with REACT_APP_ in React apps
-// const API_URL = process.env.VITE_REACT_APP_API_URL || "http://localhost:9000";
-const API_URL = "http://localhost:5500";
-const apiKey = "0040d29c-3835-4c59-81b7-7ce4e654ded5";
-interface VideosDataType {
-
-    id: string
-    title: string
-    channel: string
-    image: string
-}
+export const API_URL = "http://localhost:5500";
 
 interface Comment {
   id: string
@@ -43,12 +37,8 @@ interface VideoType {
   comments: Comment[]
 }
 
-const Home = () => {
-
-  let request: string = `videos`
-  const videosUrl: string = `${API_URL}/${request}`
-
-  const [videosList, setVideosList] = useState<VideosDataType[]>([]);
+export const request: string = `videos`
+const Home: React.FC = () => {
 
   const [currentVideo, setCurrentVideo] = useState<VideoType>({
     id: "",
@@ -61,137 +51,73 @@ const Home = () => {
     duration: "",
     video: "",
     timestamp: 0,
-    comments: [
-
-    ]
+    comments: []
   });
-   
-  const {videoId} = useParams()
 
+  const {videoId} = useParams()
+   
   function getRandomVid (vidListLen: number) {
     return Math.floor((Math.random() * vidListLen));
   }
 
-  function getVideos () {
-
-    axios
-    .get(videosUrl)
-    .then((response) => {
-      setVideosList(response.data);
-
-      })
-    .then(() => {
-
-      })
-    .catch ((err) => {
-      console.log(`Videos API error :`, err)
-    })
-
-
-	}// end getVideos function
+  const { data: videosData, isLoading, isError } = useQuery(['videos', request], fetchVideos);
 
   // on page mount [] empty dependency runs once. good for API calls
   // fires the side effect of useEffect after every render when there is no second argument
   useEffect(() => {
-    getVideos();
-    document.title = 'Home';
+    document.title = 'Home'
   }, [])
-
-  function getCurrentVideo(id: string) {
-    console.log("id," + id)
-      axios
-      .get(`${API_URL}/${request}/${id}`)
-      .then( (response) => {
-        setTimeout(() => {
-          
-          setCurrentVideo(response.data)
-          console.log(response.data)
-          document.title = `${response.data.title}}`;
-        }, 500);
-        })
-      .catch ( (err: Error) => {
-        console.log(`Videos API error :` , err);
-      })
-  }
  
-
   // empy square brackets [] means on page mount (page renders)
-  useEffect(() => {
+  useEffect( () => {
 
-    if (videoId) {
-        getCurrentVideo(videoId);
-    } else if(videosList.length){
-        let ranNum: number = getRandomVid(videosList.length)
+    async function fetchVideo() {
+      if (videoId) {
+          apiService.getCurrentVideo(videoId);
 
-        let curVid: string = videosList[ranNum].id;
-        getCurrentVideo(curVid)
+          const currentVideo = await apiService.getCurrentVideo(videoId)
+          document.title = `${currentVideo.title}`;
+          setCurrentVideo(currentVideo)
+          
+      } else if (!videoId && videosData) {
 
+          let ranNum: number = getRandomVid(videosData.length)
+          document.title = `Home`;
+          let curVid: string = videosData[ranNum].id;
+          const randomVideo = await apiService.getCurrentVideo(curVid)
+          setCurrentVideo(randomVideo)
+      }
+      
+      window.scrollTo({top: 0, left: 0, behavior: 'instant'});
     }
-    // videoId is a dependency which means that the use effect will run the code when the videoId variable has changed
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, [videoId, videosList])
+    fetchVideo()
 
+  }, [videoId, videosData])
 
-  const postComment = (newComment: newComment) => {
-    const postCommentUrl = `${API_URL}/${request}/${currentVideo?.id}/comments`
-    axios
-        .post(postCommentUrl, newComment )
-        .then( () => {
-            getCurrentVideo(currentVideo?.id);
-        })
-        .catch((err) => {
-            console.log("Comment post error", err);
-        });
+  // Handle adding new comments
+  const handleVideoInfoUpdate = async () => {
+    try {
+      const updatedVideo = await apiService.getCurrentVideo(currentVideo.id);
+      setCurrentVideo(updatedVideo);
+    } catch (error) {
+      console.error('Error fetching updated video:', error);
+    }
+  };
 
-  }
-
-  const deleteComment = (commentId: string) => {
-    
-    const deleteCommentUrl = `${API_URL}/${request}/${currentVideo.id}/comments/${commentId}`;
-    console.log("inside")
-    axios
-        .delete(deleteCommentUrl)
-        .then(( ) => {
-          console.log("here")
-            getCurrentVideo(currentVideo?.id)
-        })
-        .catch( (err) => {
-            console.log("delete post error", err);
-        });
-  }
-
-
-  const likeVideo = (videoId: string): void => {
-   
-    const url = `${API_URL}/${request}/${videoId}/likes`;
-    axios
-    .put(url)
-    .then(() => {
-      // alert("Video Liked")
-      getCurrentVideo(videoId)
-    })
-    .catch( (err) => {
-        console.log("Could not like video", err);
-
-    });
-}
-	
-  
-
-    return ( 
-        currentVideo && videosList ? 
+return ( 
+      currentVideo && videosData ? 
         <>
-          <CurrentVideo   currentVideo={currentVideo}/>
+          { currentVideo && <CurrentVideo currentVideo={currentVideo}/> }
           <div className="app__contant">
             <div className="main__content">
               <div className="main__content-left">
                 
-                <MainContent getCurrentVideo={getCurrentVideo} currentVideo={currentVideo} likeVideo={likeVideo}/>
-                <CommentsForm currentVideo={currentVideo} postComment={postComment} />
-                <CommentList deleteComment={deleteComment} currentVideo={currentVideo}/>
+              { currentVideo && <MainContent currentVideo={currentVideo} handleVideoLike={handleVideoInfoUpdate}/>}
+                <CommentsForm currentVideo={currentVideo}  handleCommentUpdate={handleVideoInfoUpdate}/>
+                <CommentList handleCommentUpdate={handleVideoInfoUpdate} currentVideo={currentVideo}/>
               </div>
               <div className="main__content-right">
-                <VideoList videos={videosList.filter(e => e.id !== currentVideo.id)}  />
+                <VideoList videos={videosData ? videosData.filter(e => e.id !== currentVideo.id) : []}  />
               </div>
             </div>
           </div>

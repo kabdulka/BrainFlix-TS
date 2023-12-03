@@ -73,6 +73,31 @@
         flex-direction: column;
         gap: 1rem;
         width: 100%;
+
+        @include desktop {
+            margin-bottom: 3.35rem;
+        }
+    }
+
+    &__upload-container {
+        display: flex;
+        gap: 0.5rem;
+
+        @include desktop {
+            gap: 0rem;
+            font-size: 0.75rem;
+        }
+        padding: 1rem 0rem;
+    }
+
+    &__file--error {
+        color: red;
+    }
+
+    &__file-input {
+        @include desktop {
+            width: 40%;
+        }
     }
 
     &-title-label {
