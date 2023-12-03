@@ -1,25 +1,16 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
 .header {
     
     display: flex;
     flex-direction: column;
-    padding: 1rem 0rem  ;
+    padding: 1rem 0rem;
 
     @include tablet {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-    }
-
-    @include desktop {
-
     }
 
     &__logo-container {
@@ -29,7 +20,6 @@ body {
             display: flex;
  
         }
-        
     }
 
     &__logo-link {

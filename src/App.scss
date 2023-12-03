@@ -3,7 +3,9 @@
 
 * {
     font-family: "avenir";
-  }
+    padding: 0;
+    margin: 0;
+}
 
 .app__contant {
 
@@ -27,7 +29,7 @@
         @include tablet {
             padding-bottom: 2rem;
         }
-        
+
         @include desktop {
             padding-bottom: 4rem;
         }
