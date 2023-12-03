@@ -9,7 +9,7 @@ interface CommentListProps {
 
 const CommentList = ({currentVideo, handleCommentUpdate}: CommentListProps) => {
 
-    const comments = currentVideo.comments;
+    const comments = currentVideo.comments.sort((a,b) => b.timestamp - a.timestamp);
 
     return ( 
         <>
@@ -18,15 +18,13 @@ const CommentList = ({currentVideo, handleCommentUpdate}: CommentListProps) => {
             <ul className='comments__list'>
 
                 {comments?.map((comment) => 
- 
-                    // Map returns new data use it instead of a for each loop
+
                     <Comment  
                            key={comment.id} 
                            currentComment={comment} 
                            handleCommentUpdate={handleCommentUpdate}
                            videoId={currentVideo.id}
                     />
-                
                 )}
             </ul>
         </section>

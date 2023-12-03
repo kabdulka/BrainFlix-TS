@@ -1,7 +1,5 @@
-
 import axios from "axios";
 import { getRandomVid } from "../util/helpers";
-
 
 export const fetchVideo = async ({ queryKey }) => {
 

@@ -54,9 +54,7 @@
             padding-left: 1.25rem;
             gap: 2rem;
             border-bottom: none;
-
         }
-
     }
 
     &__comment {
@@ -69,10 +67,6 @@
 
             flex-direction: row;
             align-items: flex-end;
-        }
-
-        @include desktop {
-            
         }
 
         &__btn-container {
@@ -112,7 +106,6 @@
             }
         }
 
-        
         &-name {
 
             height: 2.25rem;
@@ -126,13 +119,12 @@
                 font-size: 0.85rem;
                 font-family: 'AvenirNext LT Pro';
             }
-
+            
             &:focus {
     
                 outline: 2px solid black;
             }
 
-    
             @include tablet {
                 padding: 1.5rem 1rem;
                 

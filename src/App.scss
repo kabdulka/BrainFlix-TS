@@ -5,7 +5,6 @@
     font-family: "avenir";
   }
 
-
 .app__contant {
 
     padding: 0rem 1rem;
@@ -18,22 +17,17 @@
     }
 }
 
-
 .main__content {
-
     width: 100%;
-
-
     @include desktop {
         display: flex;
     }
 
     &-right {
-
         @include tablet {
             padding-bottom: 2rem;
         }
-
+        
         @include desktop {
             padding-bottom: 4rem;
         }

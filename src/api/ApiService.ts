@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
-export const request = 'videos';
+export const request = "videos";
 
 interface VideosDataType {
   id: string;
@@ -36,14 +36,16 @@ export class ApiService {
   private request: string;
 
   constructor() {
-    this.API_URL = 'http://localhost:5500';
-    this.request = 'videos';
+    this.API_URL = "http://localhost:5500";
+    this.request = "videos";
     // headers
   }
 
   public async getVideos(): Promise<VideosDataType[]> {
     try {
-      const response: AxiosResponse<VideosDataType[]> = await axios.get(`${this.API_URL}/${this.request}`);
+      const response: AxiosResponse<VideosDataType[]> = await axios.get(
+        `${this.API_URL}/${this.request}`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Videos API error: ${error}`);
@@ -52,14 +54,19 @@ export class ApiService {
 
   public async getCurrentVideo(id: string): Promise<VideoType> {
     try {
-      const response: AxiosResponse<VideoType> = await axios.get(`${this.API_URL}/${this.request}/${id}`);
+      const response: AxiosResponse<VideoType> = await axios.get(
+        `${this.API_URL}/${this.request}/${id}`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Videos API error: ${error}`);
     }
   }
 
-  public async postComment(videoId: string, newComment): Promise<AxiosResponse<any, any>> {
+  public async postComment(
+    videoId: string,
+    newComment
+  ): Promise<AxiosResponse<any, any>> {
     const postCommentUrl = `${this.API_URL}/${this.request}/${videoId}/comments`;
     try {
       const postVideo = await axios.post(postCommentUrl, newComment);
@@ -69,7 +76,10 @@ export class ApiService {
     }
   }
 
-  public async deleteComment(videoId: string, commentId: string): Promise<void> {
+  public async deleteComment(
+    videoId: string,
+    commentId: string
+  ): Promise<void> {
     const deleteCommentUrl = `${this.API_URL}/${this.request}/${videoId}/comments/${commentId}`;
     try {
       await axios.delete(deleteCommentUrl);
@@ -81,27 +91,22 @@ export class ApiService {
   public async likeVideo(videoId: string): Promise<void> {
     const likevideoURL = `${this.API_URL}/${request}/${videoId}/likes`;
     try {
-        await axios.put(likevideoURL);
+      await axios.put(likevideoURL);
     } catch (error) {
-        throw new Error(`Like video error: ${error}`);
+      throw new Error(`Like video error: ${error}`);
     }
   }
 
   public async postVideo(newvideo) {
     const postVideoUrl = `${this.API_URL}/videos`;
     const headers = {
-        "Content-Type": "multipart/form-data"
-    }
+      "Content-Type": "multipart/form-data",
+    };
 
     try {
-        await axios.post(
-            postVideoUrl,
-            newvideo,
-            {headers}
-        );
+      await axios.post(postVideoUrl, newvideo, { headers });
     } catch (error) {
-        throw new Error(`Post video error: ${error}`);
+      throw new Error(`Post video error: ${error}`);
     }
   }
-
 }
