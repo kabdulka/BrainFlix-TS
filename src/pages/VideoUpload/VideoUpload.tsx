@@ -18,8 +18,8 @@ const VideoUpload: React.FC = () => {
   const queryClient = useQueryClient();
   const [newTitle, setTitle] = useState("");
   const [newDescription, setDescription] = useState("");
-  const [newImage, setNewImage] = useState(null);
-  const [file, setFile] = useState(null);
+  const [newImage, setNewImage] = useState<File>(null);
+  const [file, setFile] = useState<File>(null);
   const [fileDataUrl, setFileDataUrl] = useState(null); //tracks data url for uploaded image file
   const [filename, _] = useState("Select an Image"); //tracks file name of uploaded file
   const [uploadErrorState, setUploadErrorState] = useState<CommentErrorState>({

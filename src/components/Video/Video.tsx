@@ -27,6 +27,6 @@ const Video: React.FC<VideoProp> = ({ video }) => {
       </li>
     </>
   );
-}
+};
 
 export default Video;
